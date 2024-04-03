@@ -7,7 +7,7 @@ editor: visual
 library(ggplot2)
 library(rstanarm)
 
-# Step 1: Simulate data
+# Simulate data
 # Assuming lambda is the average number of deaths per hospital per year
 # and we simulate for 5 hospitals over 20 years
 
@@ -18,20 +18,19 @@ data <- data.frame(
   deaths = rpois(100, lambda)
 )
 
-# Step 2: Conduct tests
-# Example test: Check if the variance is equal to the mean
-
+# Conduct test
 mean_deaths <- mean(data$deaths)
 var_deaths <- var(data$deaths)
 test_statistic <- (var_deaths - mean_deaths) / sqrt(2 * mean_deaths / length(data$deaths))
 p_value <- 2 * pnorm(abs(test_statistic))
 
-# Step 3: Create a plot with ggplot2
+# Create plot
 ggplot(data, aes(x = year, y = deaths, fill = factor(hospital))) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(title = "Number of Deaths due to Cancer per Year", x = "Year", y = "Number of Deaths") +
   theme_minimal()
-# Step 4: Fit a Poisson regression model
+
+# Poisson regression model
 model <- glm(deaths ~ year + factor(hospital), data = data, family = poisson(link = "log"))
 summary(model)
 ```
