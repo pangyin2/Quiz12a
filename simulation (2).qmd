@@ -1,0 +1,21 @@
+---
+title: "simulation"
+format: pdf
+editor: visual
+---
+```{r}
+library(ggplot2)
+library(rstanarm)
+
+# Step 1: Simulate data
+# Assuming lambda is the average number of deaths per hospital per year
+# and we simulate for 5 hospitals over 20 years
+
+lambda <- 50  # Example value
+data <- data.frame(
+  year = rep(2001:2020, times = 5),
+  hospital = rep(1:5, each = 20),
+  deaths = rpois(100, lambda)
+)
+```
+
