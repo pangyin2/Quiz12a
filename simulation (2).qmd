@@ -7,7 +7,7 @@ editor: visual
 library(ggplot2)
 library(rstanarm)
 
-# Step 1: Simulate data
+# Simulate data
 # Assuming lambda is the average number of deaths per hospital per year
 # and we simulate for 5 hospitals over 20 years
 
